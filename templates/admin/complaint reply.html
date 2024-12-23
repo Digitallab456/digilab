@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+</head>
+<body class=" bo">
+    <table border="2" class="dot" >
+        <tr>
+        <th>username</th>
+        <th>complaint</th>
+        <th>date</th>
+        <th>reply</th>
+       
+
+    
+    </tr>
+
+{% for i in val %}
+<tr> 
+    <td>{{i.LOGIN.username }}</td>
+    <td>{{i.complaint}}</td>
+    <td>{{i.date}}</td>
+    <td>{{i.reply}}</td>
+    <td> <a href="complaint/{{i.id}}"><li class="material-icons">reply_all</li></a></td>
+        
+
+    
+  
+
+  
+  
+
+{% endfor %}
+       
+        
+        
+        
+    </tr>   
+    </table>
+</body>
+</html>

@@ -1,0 +1,85 @@
+*{
+box-sizing: border-box;
+padding: 0;
+margin: 0;
+
+}
+body{
+ /*background-color:#c6adad;*/
+  background-color: #196f92;
+   background-position: center;
+   background-size: cover; 
+   background-repeat: no-repeat;   
+
+}
+.login-container{
+  background-color: #69b3bb;
+    height: 400px;
+    width:400px;
+    /*border: 3px solid rgb(77, 76, 180);*/
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.541);
+    padding-left: 60px;
+    padding-top: 20px;
+    padding-bottom: 70px;
+    margin-left: 450px;
+    margin-top: 150px;
+    margin-bottom: 150px;
+border-radius: 15px;
+backdrop-filter: blur(5px);
+align-items: center;
+
+
+
+}
+.heading{
+    color: white;
+
+   padding-left: 80px;
+    margin: 20px;
+    font-size: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.btn{
+    color: white;
+    background-color: rgb(71, 71, 163);
+    padding-left: 40px;
+    padding-right: 40px ;
+    margin: 10px;
+    margin-left: 50px;
+    transition: 0.10s ease;
+   
+}
+
+.btn:hover {
+    background-color: rgb(8, 8, 8);
+}
+input{
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 15px;
+    border: 10px;
+    margin: 5px;
+    
+}
+label{
+    color: rgb(32, 29, 29);
+    width: 100;
+    padding-left:20px;
+}
+.user{
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 15px;
+    border: 10px;
+    margin: 5px;
+    
+    
+}
+.reg{
+    color: rgb(32, 29, 29);
+    padding-left:20px;
+  margin-top: 10px;
+ 
+    
+}

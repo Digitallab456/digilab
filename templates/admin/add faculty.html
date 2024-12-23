@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title> lab </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div>
+        <form class="fac-container" action="" method="post">
+    
+            {% csrf_token %}
+            <h1 class="he">
+                faculty details
+            
+            </h1>
+            
+    <label>
+        id:
+    </label>
+    <input type="text" name="sid"/><br>
+    <label>
+        Name:
+
+    </label>
+    <input type="text" name="name"/><br>
+    <label>
+        department:
+    </label>
+    <select name="department">
+        <option>
+            bsc computer science
+        </option>
+        <option>
+            bca
+        </option>
+        <option>
+            microbiology
+        </option>
+    </select><br>
+    <label>
+        subject:
+    </label> 
+    <select name="subject">
+        <option>
+            c
+        </option>
+        <option>
+            java
+        </option>
+        <option>
+            php
+        </option>
+        <option>
+            html
+        </option>
+        <option>
+            python
+        </option>
+        </select><br>
+    </select><br>
+    <label>
+        qualification:
+
+    </label>
+    <input type=" text" name="qualification"/><br>
+    <label>
+        phone no
+    </label>
+    <input type="text" name="phoneno"/><br>
+    <input type="submit"value="submit" class="btn">
+</form>
+</div>
+    
+
+
+    
+</body>
+
+</html>

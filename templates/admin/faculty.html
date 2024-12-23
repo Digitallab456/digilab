@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+</head>
+<body class=" bo">
+    <table border="2"  >
+        <tr>
+            <th>id</th>
+        <th>Name</th>
+        <th> department</th>
+        <th>subject </th>
+        <th>qualification</th>
+        <th>phno</th>
+        <th>+</th>
+    
+    </tr>
+    {% for i in val %}
+    <tr> 
+        <td>{{i.id }}</td>
+        <td>{{i.name}}</td>
+        <td>{{i.department}}</td>
+        <td>{{i.subject}}</td>
+        <td>{{i.qualification}}</td>
+        <td>{{i.phoneno}}</td>
+        <td>
+            <a href="editfaculty/{{i.id}}"><li class="material-icons">edit</li> </a><br>
+            <a href="removefaculty/{{ i.LOGIN.id }}"><li class="material-icons">remove</li> </a>
+            
+        </td>
+        
+      
+    </tr>
+    {% endfor %}
+    </table>
+</body>
+</html>

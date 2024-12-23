@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+   
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <div>
+        <form class="fac-container" method="post">
+            {% csrf_token %}
+    
+    <h1 class="he">
+        student details
+    </h1>
+        
+    
+    <label>
+        student name:
+    </label>
+    <input type="text" name="studentname"value ="{{val.studentname}}"/><br>
+    <label>
+        department
+    </label>
+    <select name="department">
+        <option {% if val.department == "BSCCS" %} selected {%endif%}>BSCCS</option>
+        <option {% if val.department == "BCA" %} selected {%endif%}>BCA</option>
+    </select>
+    <br>
+    <label>
+        reg no:
+    </label>
+    <input type="text" name="regno" value ="{{val.regno }}"/><br>
+    <label>
+        phone no:
+    </label>
+    <input type="text" name="phoneno"value ="{{val.phoneno }}"/><br>
+    <label>
+        dob:
+    </label>
+    <input type="date" name="dob"value ="{{val.dob }}"/><br>
+    <label>
+        address
+    </label>
+    <textarea name="address"value ="">{{val.address }}</textarea ><br>
+        <label>
+            Semester
+        </label>
+        <select name="semester">
+            <option {% if val.semester == '1' %} selected {% endif %}>1</option>
+            <option {% if val.semester == '2' %} selected {% endif %}>2</option>
+            <option {% if val.semester == '3' %} selected {% endif %}>3</option>
+            <option {% if val.semester == '4' %} selected {% endif %}>4</option>
+            <option {% if val.semester == '5' %} selected {% endif %}>5</option>
+            <option {% if val.semester == '6' %} selected {% endif %}>6</option>
+        </select><br>
+        
+    <label >mark</label>
+    <input type="text" name="mark"/><br>
+    <input type="submit"value="submit"class="btn">
+        </form>
+        </div>
+
+</body>
+</html>
