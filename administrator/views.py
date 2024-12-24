@@ -162,6 +162,36 @@ class postcomplaintpage(View):
 class studpage(View):
     def get(self,request):
         return render(request,"student/student_homage.html")
-class timetblpage(View):
+class insert_timetable(View):
     def get(self,request):
-        return render(request,"student/timeta.html")
+        subjects = Subject.objects.all()
+        teachers = Teacher.objects.all()
+        classrooms = Class.objects.all()
+
+        return render(request, 'admin/insert_timetable.html', {
+            'subjects': subjects,
+            'teachers': teachers,
+            'classrooms': classrooms
+        })
+    
+
+    def post(self,request):
+        subject_id = request.POST.get('subject')
+        teacher_id = request.POST.get('teacher')
+        classroom_id = request.POST.get('classroom')
+        day_of_week = request.POST.get('day_of_week')
+        time_slot = request.POST.get('time_slot')
+
+        # Create a new TimetableEntry
+        timetable_entry = TimetableEntry(
+            subject_id=subject_id,
+            teacher_id=teacher_id,
+            classroom_id=classroom_id,
+            day_of_week=day_of_week,
+            time_slot=time_slot
+        )
+        timetable_entry.save()
+
+        return redirect("/adminhome_page")
+
+

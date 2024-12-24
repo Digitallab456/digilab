@@ -10,3 +10,10 @@ admin.site.register(complaintTable)
 admin.site.register(Timetable)
 admin.site.register(notificationTable)
 admin.site.register(markupTable)
+
+
+
+admin.site.register(Teacher)
+admin.site.register(Subject)
+admin.site.register(Class)
+admin.site.register(TimetableEntry)

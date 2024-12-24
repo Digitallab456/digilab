@@ -47,5 +47,36 @@ class markupTable(models.Model):
     mark=models.IntegerField(null=True,blank=True)
 
 
+class Teacher(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+
+    def __str__(self):
+        return self.name
+
+class Subject(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+class Class(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+class TimetableEntry(models.Model):
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    teacher = models.ForeignKey(facultyTable, on_delete=models.CASCADE)
+    classroom = models.ForeignKey(Class, on_delete=models.CASCADE)
+    day_of_week = models.CharField(max_length=10)  # Monday, Tuesday, etc.
+    time_slot = models.CharField(max_length=50)  # For example, "09:00-10:00"
+
+    def __str__(self):
+        return f"{self.subject.name} by {self.teacher.name} in {self.classroom.name} on {self.day_of_week} at {self.time_slot}"
+
+
+
 
   

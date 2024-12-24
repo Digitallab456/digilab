@@ -1,7 +1,7 @@
 
 from django.urls import path
 
-from administrator.views import *
+from .views import *
 
 
 urlpatterns = [
@@ -15,12 +15,15 @@ urlpatterns = [
     path("editfaculty/<int:id>/", facultyEdit.as_view(),name="editfaculty"),
     path("removefaculty/<int:id>/", facultyRemove.as_view(),name="removefaculty"),
     path("adminhome_page",Adminp.as_view(),name="admin_homepage"),
-    path("add_timetable",Timep.as_view(),name="add timetable"),
+    path("timetable",Timep.as_view(),name="timetable"),
     path("student",stdp.as_view(),name="student"),
     path("reply",Reply.as_view(),name="reply"),
     path("faculty",Facpage.as_view(),name="faculty"),
     path("postnotification",notificationp.as_view(),name="notification"),
-    path("timetable",timetablep.as_view(),name="timetable"),
+    # path("timetable",timetablep.as_view(),name="timetable"),
+    path("insert_timetable/",insert_timetable.as_view(), name='insert_timetable'),
+
+
     
     
     
@@ -35,7 +38,7 @@ urlpatterns = [
     #//////////////////////////////student//////////////////////////////////////////
     path("postcomplaint", postcomplaintpage.as_view(), name="complaintpage"),
     path("studenthomepage", studpage.as_view(), name="homepage"),
-    path("timetbl", timetblpage.as_view(), name="timetbl"),
+    # path("timetbl", timetblpage.as_view(), name="timetbl"),
     #////////////////////////////// 
     
     
