@@ -35,6 +35,11 @@ urlpatterns = [
     path("markupload", markupp.as_view(), name="mark_upload"),
     path("notification", notificationpage.as_view(), name="notification"),
     path("studentList", studentListp.as_view(), name="studentList"),
+    path("fac_reg", regpage.as_view(), name="registration"),
+    path("post", postcomplaintpage.as_view(), name="post"),
+    path("marklist",marklistPage.as_view(), name="marklist"),
+   
+   
     #//////////////////////////////student//////////////////////////////////////////
     path("postcomplaint", postcomplaintpage.as_view(), name="complaintpage"),
     path("studenthomepage", studpage.as_view(), name="homepage"),

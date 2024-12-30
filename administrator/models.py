@@ -77,6 +77,20 @@ class TimetableEntry(models.Model):
         return f"{self.subject.name} by {self.teacher.name} in {self.classroom.name} on {self.day_of_week} at {self.time_slot}"
 
 
-
-
-  
+# class fac_registrationTable(models.Model):
+#     FirstName =models.CharField(max_length=200,null=True,blank=True)
+#     LastName =models.CharField(max_length=200,null=True,blank=True)
+#     Email=models.CharField(max_length=200,null=True,blank=True)
+#     PhoneNumber=models.IntegerField(null=True,blank=True)
+#     Department=models.CharField(max_length=200,null=True,blank=True)
+#     BriefBiography=models.CharField(max_length=300, null=True,blank=True) 
+#     LOGINID=models.ForeignKey(logintable,on_delete=models.CASCADE,blank=True,null=True)
+class marklistTable(models.Model):
+    studentname = models.CharField(max_length=30, null=True,blank=True) 
+    department=models.CharField(max_length=30,null=True,blank=True)  
+    regno=models.IntegerField(null=True,blank=True)
+    phoneno=models.BigIntegerField(null=True,blank=True)
+    dob=models.DateField(null=True,blank=True)
+    address=models.CharField(max_length=30,null=True,blank=True)
+    semester=models.IntegerField(null=True,blank=True)
+    

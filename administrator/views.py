@@ -20,6 +20,9 @@ class LoginPage(View):
         request.session['user_id']=obj.id
         if obj.type=='admin':
             return HttpResponse('''<script>alert("welcome to home");window.location="adminhome_page"</script>''')
+        elif obj.type=='faculty':
+            return HttpResponse('''<script>alert("welcome to home");window.location="homepage"</script>''')
+
         #     elif obj.type=='user':
         #         return render(request,'userdashboard.html')
         #     else:
@@ -144,7 +147,7 @@ class homepage(View):
         return render(request,"faculty/faculty_homepage.html")
 class markupp(View):
     def get(self,request):
-        return render(request,"faculty/mark_upload.html")
+        return render(request,"faculty/marklist.html")
     
 class notificationpage(View):
     def get(self,request):
@@ -154,6 +157,30 @@ class notificationpage(View):
 class studentListp(View):
     def get(self,request):
         return render(request,"faculty/student_ list.html")
+
+class regpage(View):
+    def get(self,request):
+        return render(request,"faculty/registration.html")
+    def post(self,request):
+        form=facultyform(request.POST)
+        if form.is_valid():
+               login_instance=logintable.objects.create(
+                   type='faculty',
+                   username=request.POST['username'],
+                   password=request.POST['password'],
+               )
+               reg_form=form.save(commit=False)
+               reg_form.LOGIN=login_instance
+               reg_form.save()
+               return HttpResponse('''<script>alert("Registered successfully");window.location="/"</script>''')
+class marklistPage(View):
+    def get(self,request):
+               return render(request,"faculty/marklist.html")
+    def post(self, request):
+        form = marklistForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse('''<script>alert("Done"); window.location="/"</script>''')
 #///////////////////////////////////student////////////////////////////////////////////
 
 class postcomplaintpage(View):
