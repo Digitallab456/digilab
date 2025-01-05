@@ -22,6 +22,11 @@ class LoginPage(View):
             return HttpResponse('''<script>alert("welcome to home");window.location="adminhome_page"</script>''')
         elif obj.type=='faculty':
             return HttpResponse('''<script>alert("welcome to home");window.location="homepage"</script>''')
+        
+
+class logout(View):
+    def get(self, request):
+        return HttpResponse('''<script>alert("logout successfully");window.location="/"</script>''')
 
         #     elif obj.type=='user':
         #         return render(request,'userdashboard.html')
@@ -100,7 +105,7 @@ class Adminp(View):
 
 class Timep(View):
     def get(self,request):
-        return render(request,"admin/add timetable.html")
+        return render(request,"admin/timetable.html")
 class stdp(View):
     def get(self,request):
         obj=StudentTable.objects.all()
@@ -181,6 +186,10 @@ class marklistPage(View):
         if form.is_valid():
             form.save()
             return HttpResponse('''<script>alert("Done"); window.location="/"</script>''')
+class logout(View):
+    def get(self, request):
+        return HttpResponse('''<script>alert("logout successfully");window.location="/"</script>''')
+
 #///////////////////////////////////student////////////////////////////////////////////
 
 class postcomplaintpage(View):
@@ -202,12 +211,35 @@ class insert_timetable(View):
         })
     
 
+    # def post(self,request):
+    #     subject_id = request.POST.get('subject')
+    #     teacher_id = request.POST.get('teacher')
+    #     classroom_id = request.POST.get('classroom')
+    #     day_of_week = request.POST.get('day_of_week')
+    #     time_slot = request.POST.get('time_slot')
+
+    #     # Create a new TimetableEntry
+    #     timetable_entry = TimetableEntry(
+    #         subject_id=subject_id,
+    #         teacher_id=teacher_id,
+    #         classroom_id=classroom_id,
+    #         day_of_week=day_of_week,
+    #         time_slot=time_slot
+    #     )
+    #     timetable_entry.save()
+
+    #     return redirect("/timetable")
+
+
     def post(self,request):
         subject_id = request.POST.get('subject')
         teacher_id = request.POST.get('teacher')
         classroom_id = request.POST.get('classroom')
         day_of_week = request.POST.get('day_of_week')
         time_slot = request.POST.get('time_slot')
+
+        print(f"Subject: {subject_id}, Teacher: {teacher_id}, Classroom: {classroom_id}, Day: {day_of_week}, Time Slot: {time_slot}")
+
 
         # Create a new TimetableEntry
         timetable_entry = TimetableEntry(
@@ -219,6 +251,6 @@ class insert_timetable(View):
         )
         timetable_entry.save()
 
-        return redirect("/adminhome_page")
+        return redirect("/timetable")
 
 

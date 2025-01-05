@@ -33,7 +33,6 @@
 
 <h1>Class Timetable</h1>
 
-{% for classroom, days in timetable.items %}
     <div class="class-name">classroom</div>
 
     <table>
@@ -45,22 +44,24 @@
                 <th>11:00 - 12:00</th>
                 <th>12:00 - 01:00</th>
                 <th>01:00 - 02:00</th>
+                <th><a href="/insert_timetable/">ADD</a></th>
             </tr>
         </thead>
         <tbody>
                 <tr>
-                    <td> day</td>
+                    <td> </td>
                         <td>
-                            {% if time_slot in time_slots %}
-                               
-                            {% endif %}
+                            
                         </td>
-                    {% endfor %}
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>     
+                        
                 </tr>
-            {% endfor %}
         </tbody>
     </table>
-{% endfor %}
 
 </body>
 </html>

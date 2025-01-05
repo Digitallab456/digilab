@@ -68,13 +68,13 @@ class Class(models.Model):
 
 class TimetableEntry(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
-    teacher = models.ForeignKey(facultyTable, on_delete=models.CASCADE)
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
     classroom = models.ForeignKey(Class, on_delete=models.CASCADE)
     day_of_week = models.CharField(max_length=10)  # Monday, Tuesday, etc.
     time_slot = models.CharField(max_length=50)  # For example, "09:00-10:00"
 
-    def __str__(self):
-        return f"{self.subject.name} by {self.teacher.name} in {self.classroom.name} on {self.day_of_week} at {self.time_slot}"
+    # def __str__(self):
+    #     return f"{self.subject.name} by {self.teacher.name} in {self.classroom.name} on {self.day_of_week} at {self.time_slot}"
 
 
 # class fac_registrationTable(models.Model):
@@ -86,11 +86,6 @@ class TimetableEntry(models.Model):
 #     BriefBiography=models.CharField(max_length=300, null=True,blank=True) 
 #     LOGINID=models.ForeignKey(logintable,on_delete=models.CASCADE,blank=True,null=True)
 class marklistTable(models.Model):
-    studentname = models.CharField(max_length=30, null=True,blank=True) 
-    department=models.CharField(max_length=30,null=True,blank=True)  
-    regno=models.IntegerField(null=True,blank=True)
-    phoneno=models.BigIntegerField(null=True,blank=True)
-    dob=models.DateField(null=True,blank=True)
-    address=models.CharField(max_length=30,null=True,blank=True)
-    semester=models.IntegerField(null=True,blank=True)
+    studentid = models.ForeignKey(StudentTable, on_delete=models.CASCADE) 
+    mark=models.IntegerField(null=True,blank=True)
     

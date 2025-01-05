@@ -22,6 +22,7 @@ urlpatterns = [
     path("postnotification",notificationp.as_view(),name="notification"),
     # path("timetable",timetablep.as_view(),name="timetable"),
     path("insert_timetable/",insert_timetable.as_view(), name='insert_timetable'),
+    path("logout",logout.as_view(), name='logout'),
 
 
     
@@ -38,6 +39,8 @@ urlpatterns = [
     path("fac_reg", regpage.as_view(), name="registration"),
     path("post", postcomplaintpage.as_view(), name="post"),
     path("marklist",marklistPage.as_view(), name="marklist"),
+    path("logout",logout.as_view(), name='logout'),
+
    
    
     #//////////////////////////////student//////////////////////////////////////////
