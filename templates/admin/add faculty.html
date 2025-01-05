@@ -9,25 +9,30 @@
 
 <body>
     <div>
-        <form class="fac-container" action="" method="post">
+        <form class="container" action="" method="post">
     
             {% csrf_token %}
-            <h1 class="he">
+            <h2 >
                 faculty details
             
-            </h1>
-            
+            </h2>
+     <div class="form-group">        
     <label>
-        id:
+        id
     </label>
     <input type="text" name="sid"/><br>
+     </div>
+     <div class="form-group">
     <label>
-        Name:
+        
+        Name
 
     </label>
     <input type="text" name="name"/><br>
+     </div>
+     <div class="form-group">
     <label>
-        department:
+        Department
     </label>
     <select name="department">
         <option>
@@ -40,8 +45,10 @@
             microbiology
         </option>
     </select><br>
+     </div>
+     <div class="form-group">
     <label>
-        subject:
+        Subject
     </label> 
     <select name="subject">
         <option>
@@ -61,16 +68,23 @@
         </option>
         </select><br>
     </select><br>
+     </div>
+     <div class="form-group">
     <label>
-        qualification:
+        Qualification
 
     </label>
     <input type=" text" name="qualification"/><br>
+     </div>
+     <div class="form-group">
     <label>
-        phone no
+        Phone Number
     </label>
     <input type="text" name="phoneno"/><br>
+     </div>
+     <div class="form-group">
     <input type="submit"value="submit" class="btn">
+     </div>
 </form>
 </div>
     
