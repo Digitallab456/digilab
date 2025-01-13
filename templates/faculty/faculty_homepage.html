@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title><link rel="stylesheet" href="nav.css">
-    <link rel="stylesheet" href="sid.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sid.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
@@ -22,7 +23,7 @@
        </div> </nav></header> 
         
         <div class="ma">
-    <a href="markupload"><i class="material-icons">post_add</i><br>add mark</a><br>
+    <a href="marklist"><i class="material-icons">post_add</i><br>add mark</a><br>
     <a href="studentList"><i class="material-icons">groups</i><br>view student </a><br>
     <a href="#"><i class="material-icons">code</i> code<br></a><br>
  

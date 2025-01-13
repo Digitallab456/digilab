@@ -31,9 +31,9 @@ class complaintTable(models.Model):
     date=models.DateField(null=True,blank=True)
     reply=models.CharField(max_length=200,null=True,blank=True)
 
-class Timetable(models.Model):
-     department=models.CharField(max_length=200,null=True,blank=True)
-     hour=models.IntegerField(null=True,blank=True)
+#class Timetable(models.Model):
+    # department=models.CharField(max_length=200,null=True,blank=True)
+    # hour=models.IntegerField(null=True,blank=True)
 
 class notificationTable(models.Model):
      post=models.CharField(max_length=200,null=True,blank=True)
@@ -42,9 +42,9 @@ class notificationTable(models.Model):
 
 class markupTable(models.Model):
     FACULTY=models.ForeignKey(facultyTable, on_delete=models.CASCADE)
+    mark=models.IntegerField(null=True,blank=True)
     STUDENT=models.ForeignKey(StudentTable, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
-    mark=models.IntegerField(null=True,blank=True)
 
 
 class Teacher(models.Model):

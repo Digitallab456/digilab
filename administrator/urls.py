@@ -33,7 +33,7 @@ urlpatterns = [
 
     path("editstudent", editpage.as_view(), name="edit student"),
     path("homepage", homepage.as_view(), name="faculty_homepage"),
-    path("markupload", markupp.as_view(), name="mark_upload"),
+    path("markupload/<int:id>/", markupp.as_view(), name="mark_upload"),
     path("notification", notificationpage.as_view(), name="notification"),
     path("studentList", studentListp.as_view(), name="studentList"),
     path("fac_reg", regpage.as_view(), name="registration"),

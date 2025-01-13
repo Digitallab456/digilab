@@ -137,6 +137,8 @@ class notificationp(View):
 class timetablep(View):
     def get(self,request):
         return render(request,"admin/timetable.html")
+    
+
 
 
     
@@ -146,13 +148,27 @@ class timetablep(View):
     #////////////////////////// faculty///////////////////////////
 class editpage(View):
     def get(self,request):
+        
         return render(request,"faculty/edit _student.html")
+    
 class homepage(View):
     def get(self,request):
         return render(request,"faculty/faculty_homepage.html")
+    
+
 class markupp(View):
-    def get(self,request):
-        return render(request,"faculty/marklist.html")
+    def get(self,request, id):
+        obj = StudentTable.objects.filter(id=id)
+        print(obj)
+        c = facultyTable.objects.get(LOGIN__id = request.session['user_id'])
+        return render(request,"faculty/mark_upload.html",{'val':obj, 'a':c})
+    
+    def post(self, request, id):
+        k = marklistForm(request.POST)
+        if k.is_valid():
+            k.save()
+            return HttpResponse('''<script>alert("mark added successfully");window.location="/marklist"</script>''')
+
     
 class notificationpage(View):
     def get(self,request):
@@ -161,7 +177,8 @@ class notificationpage(View):
 
 class studentListp(View):
     def get(self,request):
-        return render(request,"faculty/student_ list.html")
+        c= StudentTable.objects.all() 
+        return render(request,"faculty/student_ list.html",{'farhana':c})
 
 class regpage(View):
     def get(self,request):
@@ -180,12 +197,9 @@ class regpage(View):
                return HttpResponse('''<script>alert("Registered successfully");window.location="/"</script>''')
 class marklistPage(View):
     def get(self,request):
-               return render(request,"faculty/marklist.html")
-    def post(self, request):
-        form = marklistForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponse('''<script>alert("Done"); window.location="/"</script>''')
+        c=StudentTable.objects.all()
+        return render(request,"faculty/marklist.html",{'b':c})
+  
 class logout(View):
     def get(self, request):
         return HttpResponse('''<script>alert("logout successfully");window.location="/"</script>''')
