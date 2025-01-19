@@ -28,12 +28,8 @@ class facultyTable(models.Model):
 class complaintTable(models.Model):
     LOGIN=models.ForeignKey(logintable, on_delete=models.CASCADE)
     complaint=models.CharField(max_length=200,null=True,blank=True)
-    date=models.DateField(null=True,blank=True)
+    date=models.DateField(auto_now_add=True, null=True,blank=True)
     reply=models.CharField(max_length=200,null=True,blank=True)
-
-#class Timetable(models.Model):
-    # department=models.CharField(max_length=200,null=True,blank=True)
-    # hour=models.IntegerField(null=True,blank=True)
 
 class notificationTable(models.Model):
      post=models.CharField(max_length=200,null=True,blank=True)
@@ -42,7 +38,7 @@ class notificationTable(models.Model):
 
 class markupTable(models.Model):
     FACULTY=models.ForeignKey(facultyTable, on_delete=models.CASCADE)
-    mark=models.IntegerField(null=True,blank=True)
+    mark=models.CharField(null=True, max_length=100,blank=True)
     STUDENT=models.ForeignKey(StudentTable, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
 
@@ -65,6 +61,25 @@ class Class(models.Model):
 
     def __str__(self):
         return self.name
+class Timetable(models.Model):
+    DAY_CHOICES = [
+        ('Monday', 'Monday'),
+        ('Tuesday', 'Tuesday'),
+        ('Wednesday', 'Wednesday'),
+        ('Thursday', 'Thursday'),
+        ('Friday', 'Friday'),
+    ]
+    day = models.CharField(max_length=10, choices=DAY_CHOICES)
+    CLASS = models.ForeignKey(Class, on_delete=models.CASCADE, blank=True, null=True)
+    slot_9_10 = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name="slot_9_10")
+    slot_10_11 = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name="slot_10_11")
+    slot_11_12 = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name="slot_11_12")
+    slot_1_2 = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name="slot_1_2")
+    slot_2_3 = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name="slot_2_3")
+    slot_3_4 = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name="slot_3_4")
+
+    def _str_(self):
+        return f"{self.day} Timetable"
 
 class TimetableEntry(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
@@ -89,3 +104,6 @@ class marklistTable(models.Model):
     studentid = models.ForeignKey(StudentTable, on_delete=models.CASCADE) 
     mark=models.IntegerField(null=True,blank=True)
     
+class taskTable(models.Model):  
+    facultyid=models.ForeignKey(facultyTable,on_delete=models.CASCADE)
+    task=models.CharField(max_length=100, null=True,blank=True)

@@ -12,7 +12,7 @@ admin.site.register(notificationTable)
 admin.site.register(markupTable)
 
 
-
+admin.site.register(taskTable)
 admin.site.register(Teacher)
 admin.site.register(Subject)
 admin.site.register(Class)

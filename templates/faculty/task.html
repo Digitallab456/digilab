@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #taskList {
+            margin-top: 20px;
+        }
+        .task-item {
+            margin: 5px 0;
+            padding: 8px;
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Task Manager</h1>
+    <form method="post" id="taskForm">
+        {% csrf_token %}
+        <input type="text" value="{{s.id}}" name="facultyid" hidden>
+        <input type="text" id="taskInput" name="task" placeholder="Enter a task" required>
+        <button type="submit">Add Task</button>
+    </form>
+
+  
+
+    
+</body>
+</html>

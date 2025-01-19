@@ -19,10 +19,10 @@ class facultyform(ModelForm):
         model=facultyTable
         fields=['name','department','subject','qualification','phoneno']
 
-class complaintform(ModelForm):
-    class Meta:
-        model=complaintTable
-        fields= ['complaint','date','reply'] 
+# class complaintform(ModelForm):
+#     class Meta:
+#         model=complaintTable
+#         fields= ['complaint','date','reply'] 
 
 class Notification_form(ModelForm):
     class Meta:
@@ -36,3 +36,14 @@ class marklistForm(ModelForm):
     class Meta:
         model = markupTable
         fields = ['FACULTY', 'STUDENT', 'mark']
+
+
+class TaskForm(ModelForm):
+    class Meta:
+        model = taskTable
+        fields = ['facultyid', 'task']
+
+class cForm(ModelForm):
+    class Meta:
+        model = complaintTable
+        fields = ['complaint', 'LOGIN']

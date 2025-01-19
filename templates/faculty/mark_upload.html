@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
     
 </head>
 <body>
@@ -18,13 +18,13 @@
 
     </select> -->
 <p>
-    {{val.studentname}}
+    
 </p>
-    <input type="text" value="{{val.studentname}}">
+    <input type="text" value="{{obj.studentname}}">
 
         <input type="text" name="mark">
-      
-        <input type="hidden" name="FACULTY" value="{{a}}">
+        <input type="hidden" name="STUDENT" value="{{obj.id}}">
+        <input type="hidden" name="FACULTY" value="{{a.id}}">
         <button type="submit">Add</button>
 </form>
 </body>

@@ -27,14 +27,14 @@
     </tr>
     <tr>
         {% for i in b %}   
-        <td>{{i.studentname}}</td>
-        <td>{{i.regno}}</td>
-        <td>{{i.department}}</td>
-        <td>{{i.semester}}</td>
-        <td>{{i.address}}</td>
-        <td>{{i.dob}}</td>
-        <td>{{i.phoneno}}</td>
-        <td></td>
+        <td>{{i.STUDENT.studentname}}</td>
+        <td>{{i.STUDENT.regno}}</td>
+        <td>{{i.STUDENT.department}}</td>
+        <td>{{i.STUDENT.semester}}</td>
+        <td>{{i.STUDENT.address}}</td>
+        <td>{{i.STUDENT.dob}}</td>
+        <td>{{i.STUDENT.phoneno}}</td>
+        <td>{{i.mark}}</td>
         <td>
             <a href="markupload/{{i.id}}"><li class="material-icons">add mark</li> </a><br>
             

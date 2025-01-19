@@ -103,9 +103,6 @@ class Adminp(View):
     def get(self, request):
         return render(request,"admin/admin_homepage.html")
 
-class Timep(View):
-    def get(self,request):
-        return render(request,"admin/timetable.html")
 class stdp(View):
     def get(self,request):
         obj=StudentTable.objects.all()
@@ -131,21 +128,58 @@ class notificationp(View):
             c.save()
         return HttpResponse('''<script>alert("Done");window.location="/notification"</script>''')
 
+            
+class select_class(View):
+    def get(self, request):
+        obj = Class.objects.all()
+        return render(request, "admin/select_class.html", {'obj': obj})
+                  
+class manage_timetable(View):
+    def post(self, request):
+        class_id=request.POST['class_id']
+        request.session['class_id']=class_id
+        class_obj = Class.objects.get(id=class_id)
+        subjects = Subject.objects.all()
+        existing_days = Timetable.objects.filter(CLASS_id=class_obj).values_list('day', flat=True)
+        all_days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+        available_days = [day for day in all_days if day not in existing_days]
+        return render(request, 'admin/manage_timetable.html', {'subjects': subjects,'available_days': available_days})
+
+class add_timetable_action(View):
+    def post(self, request):
+        day = request.POST['day']
+        slot_9_10 = request.POST['slot_9_10']
+        slot_10_11 = request.POST['slot_10_11']
+        slot_11_12 = request.POST['slot_11_12']
+        slot_1_2 = request.POST['slot_1_2']
+        slot_2_3 = request.POST['slot_2_3']
+        slot_3_4 = request.POST['slot_3_4']
+        obj = Timetable()
+        obj.CLASS=Class.objects.get(id=request.session['class_id'])
+        obj.day=day
+        obj.slot_9_10=Subject.objects.get(id=slot_9_10)
+        obj.slot_10_11=Subject.objects.get(id=slot_10_11)
+        obj.slot_11_12=Subject.objects.get(id=slot_11_12)
+        obj.slot_1_2=Subject.objects.get(id=slot_1_2)
+        obj.slot_2_3=Subject.objects.get(id=slot_2_3)
+        obj.slot_3_4=Subject.objects.get(id=slot_3_4)
+        obj.save()
+        return HttpResponse('''<script>alert("successfully added");window.location="/select_class#about"</script>''')
         
-   
-
-class timetablep(View):
-    def get(self,request):
-        return render(request,"admin/timetable.html")
     
-
-
-
-    
-    
-    
-    
-    #////////////////////////// faculty///////////////////////////
+class select_class1(View):
+    def get(self, request):
+        obj = Class.objects.all()
+        return render(request, "admin/select_class1.html", {'obj': obj})
+                  
+class view_timetable(View):
+    def post(self, request):
+        class_id=request.POST['class_id']
+        # Query all timetable entries from the database
+        timetable_entries = Timetable.objects.filter(CLASS_id=class_id).order_by('day')
+        # Render the timetable in a template
+        return render(request, 'admin/timetable.html', {'timetable_entries': timetable_entries})  
+      #////////////////////////// faculty///////////////////////////
 class editpage(View):
     def get(self,request):
         
@@ -158,10 +192,10 @@ class homepage(View):
 
 class markupp(View):
     def get(self,request, id):
-        obj = StudentTable.objects.filter(id=id)
+        obj = StudentTable.objects.filter(id=id).first()
         print(obj)
         c = facultyTable.objects.get(LOGIN__id = request.session['user_id'])
-        return render(request,"faculty/mark_upload.html",{'val':obj, 'a':c})
+        return render(request,"faculty/mark_upload.html",{'obj':obj, 'a':c})
     
     def post(self, request, id):
         k = marklistForm(request.POST)
@@ -197,18 +231,46 @@ class regpage(View):
                return HttpResponse('''<script>alert("Registered successfully");window.location="/"</script>''')
 class marklistPage(View):
     def get(self,request):
-        c=StudentTable.objects.all()
+        c=markupTable.objects.all()
         return render(request,"faculty/marklist.html",{'b':c})
   
 class logout(View):
     def get(self, request):
         return HttpResponse('''<script>alert("logout successfully");window.location="/"</script>''')
+class viewcomplaint(View):
+    def get(self,request):
+        return render(request,"faculty/f_reply.html")
+    
+class task(View):
+   def get(self,request):
+        c = facultyTable.objects.get(LOGIN__id = request.session['user_id'])
+        return render(request,"faculty/task.html", {'s':c})
+   def post(self, request):
+       d = TaskForm(request.POST)
+       if d.is_valid():
+           d.save()
+           return HttpResponse('''<script>alert("task added successfully");window.location="/task"</script>''')
 
-#///////////////////////////////////student////////////////////////////////////////////
+class taskman(View):
+    def get(self,request):
+        c = taskTable.objects.filter(facultyid_LOGIN__id=request.session['user_id'])
+        return render(request,"faculty/taskMan.html",{'a':c})
+
 
 class postcomplaintpage(View):
     def get(self,request):
-        return render(request,"student/post.html")
+        c = logintable.objects.get(id=request.session['user_id'])
+        return render(request,"faculty/post.html",{'z':c})
+    def post(self, request):
+       d = cForm(request.POST)
+       if d.is_valid():
+           d.save()
+           return HttpResponse('''<script>alert("complaint added successfully");window.location="/"</script>''')
+
+    
+
+#///////////////////////////////////student////////////////////////////////////////////
+
 class studpage(View):
     def get(self,request):
         return render(request,"student/student_homage.html")
