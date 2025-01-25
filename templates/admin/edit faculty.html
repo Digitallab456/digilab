@@ -1,18 +1,20 @@
-<!DOCTYPE html>
+{%  load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
     <title> lab </title>
-    <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+   
+
 </head>
 
 <body>
     <div>
-        <form class="fac-container" action="" method="post">
+        <form class="edit-container" action="" method="post">
     
             {% csrf_token %}
-            <h1 class="he">
+            <h1 class="hea">
                 faculty details
             
             </h1>
@@ -65,7 +67,7 @@
         qualification:
 
     </label>
-    <input type=" text" name="qualification"  value="{{ val.qualification }}" /><br>
+    <input type="text" name="qualification"  value="{{ val.qualification }}" /><br>
     <label>
         phone no
     </label>

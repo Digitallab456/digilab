@@ -8,7 +8,7 @@ from.models import *
 
 # Create your views here.
 
-
+ 
 # ///////////////////////////////////// admin////////////////////////////
 class LoginPage(View):
     def get(self, request):
@@ -24,26 +24,45 @@ class LoginPage(View):
             return HttpResponse('''<script>alert("welcome to home");window.location="homepage"</script>''')
         
 
+
+
+      
+        #         return render(request,'userdashboard.html')
+        #         else:
+        #         return HttpResponse("User type not recognized")
+        #         except logintable.DoesNotExit:
+        #         messages.error(request,"invalid username or password")
+                #    return redirect('login')
 class logout(View):
     def get(self, request):
         return HttpResponse('''<script>alert("logout successfully");window.location="/"</script>''')
-
-        #     elif obj.type=='user':
-        #         return render(request,'userdashboard.html')
-        #     else:
-        #         return HttpResponse("User type not recognized")
-        # except logintable.DoesNotExit:
-        #     messages.error(request,"invalid username or password")
-        #     return redirect('login')
         
 class StudentPage(View):
-    def get(self,request):
-        return render(request,"admin/addstudent.html")
+    def get(self, request):
+        return render(request, "admin/addstudent.html")
+
     def post(self, request):
-        form = StudentForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponse('''<script>alert("Done"); window.location="/"</script>''')
+        form1 = StudentForm(request.POST)
+        
+        if form1.is_valid():
+            # Create a new logintable entry
+            c = logintable.objects.create(
+                username=request.POST.get('email'),
+                password=request.POST.get('password'),
+                type='student'
+            )
+            print(c)  # Log the created entry for debugging
+            c.save()  # Save the logintable entry
+            
+            # Now, associate the created logintable entry with the StudentTable record
+            student = form1.save(commit=False)  # Don't save to DB yet
+            student.LOGINID = c  # Assign the logintable entry as LOGINID for the student
+            
+            # Save the student record
+            student.save()
+
+        return HttpResponse('''<script>alert("Done"); window.location="/"</script>''')
+
 class StudentEdit(View):
     def get(self,request,id):
         obj=StudentTable.objects.get(id=id)
@@ -106,6 +125,7 @@ class Adminp(View):
 class stdp(View):
     def get(self,request):
         obj=StudentTable.objects.all()
+        print(obj)
         return render(request,"admin/student.html",{'val':obj})
 class Reply(View):
     def get(self,request):
@@ -156,7 +176,7 @@ class add_timetable_action(View):
         slot_3_4 = request.POST['slot_3_4']
         obj = Timetable()
         obj.CLASS=Class.objects.get(id=request.session['class_id'])
-        obj.day=day
+        obj.day =day
         obj.slot_9_10=Subject.objects.get(id=slot_9_10)
         obj.slot_10_11=Subject.objects.get(id=slot_10_11)
         obj.slot_11_12=Subject.objects.get(id=slot_11_12)
@@ -231,7 +251,7 @@ class regpage(View):
                return HttpResponse('''<script>alert("Registered successfully");window.location="/"</script>''')
 class marklistPage(View):
     def get(self,request):
-        c=markupTable.objects.all()
+        c=StudentTable.objects.all()
         return render(request,"faculty/marklist.html",{'b':c})
   
 class logout(View):
@@ -253,7 +273,7 @@ class task(View):
 
 class taskman(View):
     def get(self,request):
-        c = taskTable.objects.filter(facultyid_LOGIN__id=request.session['user_id'])
+        c = taskTable.objects.filter(facultyid__LOGIN_id=request.session['user_id'])
         return render(request,"faculty/taskMan.html",{'a':c})
 
 

@@ -1,14 +1,128 @@
-<!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
     <title>Document</title>
    
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{% static 'css/nav.css' %}">
+    <style>
+*{
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+
+    }
+/* Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    
+  
+}
+
+/* Form Container */
+.fac-container {
+    background-color: #fff;
+    padding:6px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100vh;
+    height: 180vh;
+   
+   
+}
+
+/* Heading Styling */
+.he {
+    text-align: center;
+    color: #4CAF50;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Label Styling */
+label {
+    font-size: 1rem;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+    
+
+
+}
+
+/* Input Fields Styling */
+input[type="text"], input[type="date"], select, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    
+   
+   
+  
+    
+}
+
+/* Input Focus Styling */
+input[type="text"]:focus, input[type="date"]:focus, select:focus, textarea:focus {
+    border-color: #4CAF50;
+    outline: none;
+    background-color: #e8f5e9;
+   
+}
+
+/* Textarea Styling */
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Submit Button Styling */
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 250px;
+}
+
+/* Button Hover Styling */
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .fac-container {
+        padding: 30px;
+    }
+
+    .he {
+        font-size: 1.8rem;
+    }
+
+    label, input[type="text"], input[type="date"], select, textarea {
+        font-size: 0.95rem;
+    }
+}
+
+    
+    </style>
     
 </head>
 <body>
+  
     <div>
         <form class="fac-container" method="post">
             {% csrf_token %}
@@ -25,7 +139,7 @@
     <label>
         department
     </label>
-    <select name="deparment">
+    <select name="department">
         <option>
             bsccs
             
@@ -36,7 +150,11 @@
     <label>
         reg no:
     </label>
-    <input type="text" name="regno"/><br>
+    <input type="text" name="password"/><br>
+    <label>
+        email:
+    </label>
+    <input type="text" name="email"/><br>
     <label>
         phone no:
     </label>
@@ -60,8 +178,6 @@
             2
         </option>
     </select><br>
-    <label >mark</label>
-    <input type="text" name="mark"/><br>
     <input type="submit"value="submit"class="btn">
         </form>
         </div>

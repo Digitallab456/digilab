@@ -1,23 +1,25 @@
-<!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title> <link rel="stylesheet" href="style.css">
+    <title>Document</title> 
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 </head>
-<body class=" bo">
+<body class=" so">
     <table border="2"  >
         <tr>
         <th>Name</th>
         <th>reg no</th>
+        <th>username</th>
         <th>department</th>
         <th>semester </th>
         <th>address</th>
         <th>dob</th>
         <th>phoneno </th>
-        <th>+</th>
+        <th><a href="/addstudent">+</a></th>
         
 
     
@@ -27,7 +29,8 @@
     <tr>
         
         <td>{{i.studentname}}</td>
-        <td>{{i.regno}}</td>
+        <td>{{i.LOGINID.password}}</td>
+        <td>{{i.LOGINID.username}}</td>
         <td>{{i.department}}</td>
         <td>{{i.semester}}</td>
         <td>{{i.address}}</td>

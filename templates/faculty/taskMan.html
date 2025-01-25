@@ -12,10 +12,12 @@
     <table class="table table-dark table-bordered mt-5" style="width: 500px;">
         <thead>
           <tr>
+            <th colspan="3"><a href="task">add</a></th>
+          </tr>
+          <tr>
             <th>#</th>
-            <th>First</th>
-            <th>Last</th>
-            <th >Handle</th>
+            <th>Dask</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -23,7 +25,6 @@
           <tr>
             <th scope="row">{{forloop.counter}}</th>
             <td>{{i.task}}</td>
-            <td>{{i.facultyid.name}}</td>
             <td>
                 <a href="#" class="btn btn-primary">edit</a>
                 <a href="#" class="btn btn-danger">delete</a>

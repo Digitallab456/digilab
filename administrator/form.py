@@ -5,13 +5,13 @@ from administrator.models import *
 class StudentForm(ModelForm):
     class Meta:
         model = StudentTable
-        fields = ['studentname','department','regno','phoneno','dob','address','semester']
+        fields = ['LOGINID','studentname','department','phoneno','dob','address','semester','email']
 
 
 class StudentForm_edit(ModelForm):
     class Meta:
         model = StudentTable
-        fields = ['studentname','department','regno','phoneno','dob','address','semester']
+        fields = ['studentname','department','phoneno','dob','address','semester']
 
 
 class facultyform(ModelForm):
