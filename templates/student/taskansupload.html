@@ -1,0 +1,23 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attend Task</title> 
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="bo">
+    <h1>Attend Task: {{ task.title }}</h1>
+    <p>{{ task.description }}</p>
+
+    <h2>Submit your response:</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <!-- <label for="">Task</label>
+        <input type="text"> -->
+        <label for="">Answer</label>
+        <textarea name="" id=""></textarea>
+        <button type="submit">Submit Response</button>
+    </form>
+</body>
+</html>

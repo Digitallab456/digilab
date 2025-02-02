@@ -22,6 +22,8 @@ class LoginPage(View):
             return HttpResponse('''<script>alert("welcome to home");window.location="adminhome_page"</script>''')
         elif obj.type=='faculty':
             return HttpResponse('''<script>alert("welcome to home");window.location="homepage"</script>''')
+        elif obj.type=='student':
+            return HttpResponse('''<script>alert("welcome to Student home");window.location="studenthomepage"</script>''')
         
 
 
@@ -75,7 +77,7 @@ class StudentEdit(View):
             return HttpResponse('''<script>alert("Done"); window.location="/student"</script>''')
 class StudentRemove(View):
     def get(self, request, id):
-        obj=logintable.objects.get(id=id)
+        obj=StudentTable.objects.get(id=id)
         obj.delete()
         return HttpResponse('''<script>alert("Done"); window.location="/student"</script>''')
 
@@ -83,11 +85,27 @@ class StudentRemove(View):
 class FacultyPage(View):
     def get(self, request):
         return render(request,"admin/add faculty.html")
-    def post(self,request):
-        form=facultyform(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponse('''<script>alert("Done"); window.location="/"</script>''')
+    def post(self, request):
+        form1 = facultyform(request.POST)
+        
+        if form1.is_valid():
+            # Create a new logintable entry
+            c = logintable.objects.create(
+                username=request.POST.get('email'),
+                password=request.POST.get('password'),
+                type='faculty'
+            )
+            print(c)  # Log the created entry for debugging
+            c.save()  # Save the logintable entry
+            
+            # Now, associate the created logintable entry with the StudentTable record
+            faculty = form1.save(commit=False)  # Don't save to DB yet
+            faculty.LOGIN = c  # Assign the logintable entry as LOGINID for the student
+            
+            # Save the student record
+            faculty.save()
+
+        return HttpResponse('''<script>alert("Done"); window.location="/faculty"</script>''')
 
 class facultyEdit(View):
     def get(self, request,id):
@@ -230,8 +248,10 @@ class notificationpage(View):
         return render(request,"faculty/notification.html", {'a':c})
 
 class studentListp(View):
-    def get(self,request):
-        c= StudentTable.objects.all() 
+    def get(self, request):
+        print("Entered the view function")  #
+        c= StudentTable.objects.all 
+        print(c)
         return render(request,"faculty/student_ list.html",{'farhana':c})
 
 class regpage(View):
@@ -249,10 +269,22 @@ class regpage(View):
                reg_form.LOGIN=login_instance
                reg_form.save()
                return HttpResponse('''<script>alert("Registered successfully");window.location="/"</script>''')
+        
 class marklistPage(View):
-    def get(self,request):
-        c=StudentTable.objects.all()
-        return render(request,"faculty/marklist.html",{'b':c})
+    def get(self, request):
+        # Retrieve all students
+        students = StudentTable.objects.all()
+
+        # Get the related marks for each student (if they exist)
+        for student in students:
+            mark_entry = markupTable.objects.filter(STUDENT=student).first()  # Assuming one entry per student
+            if mark_entry:
+                student.mark = mark_entry.mark  # Assign mark to student object
+            else:
+                student.mark = None  # If no marks are found
+
+        return render(request, "faculty/marklist.html", {'students': students})
+
   
 class logout(View):
     def get(self, request):
@@ -348,5 +380,20 @@ class insert_timetable(View):
         timetable_entry.save()
 
         return redirect("/timetable")
+    
 
-
+class TaskListView(View):
+    def get(self, request):
+        # Fetch all tasks (or filter by faculty if needed)
+        tasks = taskTable.objects.all()  # You can add filters to show tasks by specific faculty or by date
+        return render(request, "student/taskview.html", {'tasks': tasks})
+class Taskanswerupload(View):
+    def get(self, request,):
+        return render(request, "student/taskansupload.html")
+    def post(self, request,id):
+      task=taskTable.objects.get(id=id)
+      k=answer(request.POST,instance=task)
+      if k.is_valid():
+           k.save()
+           return HttpResponse('''<script>alert("complaint added successfully");window.location="/"</script>''')
+     

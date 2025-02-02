@@ -3,44 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title> <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Document</title> 
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
 </head>
-<body class=" bo">
-    <table border="2"  >
+<body class="bo">
+    <table border="2">
         <tr>
-            
-    
-        <th>Name</th>
-        <th>reg no</th>
-        <th>department</th>
-        <th>semester </th>
-        <th>address</th>
-        <th>dob</th>
-        <th>ph no</th>
-    
-        <th>mark</th>
-        <td></td>
-        
-    
-    </tr>
-    <tr>
-        {% for i in b %}   
-        <td>{{i.studentname}}</td>
-        <td>{{i.LOGINID.password}}</td>
-        <td>{{i.STUDENT.department}}</td>
-        <td>{{i.STUDENT.semester}}</td>
-        <td>{{i.STUDENT.address}}</td>
-        <td>{{i.STUDENT.dob}}</td>
-        <td>{{i.STUDENT.phoneno}}</td>
-        <td>{{i.mark}}</td>
-        <td>
-            <a href="markupload/{{i.id}}"><li class="material-icons">add mark</li> </a><br>
-            
-        </td>
-    </tr>
-    {%endfor%}
+            <th>Name</th>
+            <th>Reg No</th>
+            <th>Department</th>
+            <th>Semester</th>
+            <th>Address</th>
+            <th>DOB</th>
+            <th>Phone No</th>
+            <th>Marks</th>
+            <td></td>
+        </tr>
+        {% for student in students %}
+            <tr>
+                <td>{{ student.studentname }}</td>
+                <td>{{ student.LOGINID.password }}</td>
+                <td>{{ student.department }}</td>
+                <td>{{ student.semester }}</td>
+                <td>{{ student.address }}</td>
+                <td>{{ student.dob }}</td>
+                <td>{{ student.phoneno }}</td>
+                <!-- Directly access the 'mark' attribute added to the student -->
+                <td>{{ student.mark }}</td>
+                <td>
+                    <!-- Show the "add mark" icon only if the mark is None -->
+                    {% if student.mark is none %}
+                        <a href="markupload/{{ student.id }}"><li class="material-icons">add mark</li></a><br>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
     </table>
 </body>
 </html>

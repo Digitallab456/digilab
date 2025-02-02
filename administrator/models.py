@@ -108,3 +108,6 @@ class marklistTable(models.Model):
 class taskTable(models.Model):  
     facultyid=models.ForeignKey(facultyTable,on_delete=models.CASCADE)
     task=models.CharField(max_length=100, null=True,blank=True)
+class answerTable(models.Model): 
+    taskid=models.ForeignKey(taskTable,on_delete=models.CASCADE)
+    Answer=models.CharField(max_length=500, null=True,blank=True)

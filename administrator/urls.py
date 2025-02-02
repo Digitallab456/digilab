@@ -54,6 +54,8 @@ urlpatterns = [
     path("postcomplaint", postcomplaintpage.as_view(), name="complaintpage"),
     path("studenthomepage", studpage.as_view(), name="homepage"),
     # path("timetbl", timetblpage.as_view(), name="timetbl"),
+    path('tasks/', TaskListView.as_view(), name='task_list'),
+    path('Taskanswerupload/<int:id>/',Taskanswerupload.as_view(),name="Taskanswerupload")
     #////////////////////////////// 
     
     

@@ -47,3 +47,8 @@ class cForm(ModelForm):
     class Meta:
         model = complaintTable
         fields = ['complaint', 'LOGIN']
+class answer(ModelForm):
+    class Meta:
+        model = answerTable
+        fields =[ 'Answer']
+        
